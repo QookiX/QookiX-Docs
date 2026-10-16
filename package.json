@@ -1,37 +1,31 @@
 {
-  "name": "qookix-site",
-  "version": "0.1.0",
+  "name": "qookix-web",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "icons": "node scripts/generate-icons.mjs",
-    "build": "npm run icons && next build",
-    "start": "next start",
-    "lint": "eslint",
-    "test": "node --test",
-    "preview:worker": "npm run build && wrangler dev",
-    "deploy:worker": "npm run build && wrangler deploy"
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "framer-motion": "^13.1.1",
-    "lucide-react": "^1.37.0",
-    "next": "16.3.3",
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "lucide-vue-next": "^1.0.0",
+    "nuxt": "^3.13.2",
+    "vue": "^3.5.12",
+    "vue-router": "^4.4.5"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.3.3",
-    "tailwindcss": "^4",
-    "typescript": "^5",
-    "vitepress": "^1.6.4",
-    "wrangler": "^4"
+    "typescript": "^5.6.3",
+    "vitepress": "1.6.4"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"],
+    "overrides": {
+      "esbuild": "^0.25.0"
+    }
   }
 }
