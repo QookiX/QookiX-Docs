@@ -188,30 +188,53 @@ function parseChangelogJson(data: any, fallbackVersion?: string, fallbackDate?: 
   return entries.filter((e) => e.version || e.items.length)
 }
 
+let changelogPromise: Promise<ChangelogEntry[]> | null = null
+
+async function loadGlobalChangelog(): Promise<ChangelogEntry[]> {
+  if (changelogPromise) return changelogPromise
+  changelogPromise = (async () => {
+    const targets: string[] = []
+    if (mirrorAvailable) targets.push(`${MIRROR_BASE}/changelog.json`)
+    targets.push(`${RAW_BASE}/changelog.json`)
+    for (const u of targets) {
+      try {
+        const res = await timeoutFetch(u, 8000)
+        if (!res.ok) continue
+        const data = JSON.parse(await res.text())
+        const parsed = parseChangelogJson(data, '', '')
+        if (parsed.length) return parsed
+      } catch {}
+    }
+    return []
+  })()
+  return changelogPromise
+}
+
 async function fetchChangelog(release: GhRelease): Promise<ChangelogEntry | null> {
-  const targets: string[] = []
-  if (mirrorAvailable) {
-    targets.push(`${MIRROR_BASE}/changelog.json`)
+  const normVer = (v: string) => v.replace(/^v/i, '').trim()
+  const matchEntry = (entries: ChangelogEntry[]): ChangelogEntry | null => {
+    return entries.find((e) => normVer(e.version) === normVer(release.tag_name) || e.version === release.name) || null
   }
+
+  const global = await loadGlobalChangelog()
+  const found = matchEntry(global)
+  if (found) return found
+
   const asset = release.assets.find((a) => /changelog\.json$/i.test(a.name))
   if (asset) {
-    targets.push(asset.browser_download_url)
-  }
-  targets.push(`${RAW_BASE}/changelog.json`)
-
-  for (const u of targets) {
     try {
-      const res = await timeoutFetch(u, 8000)
-      if (!res.ok) continue
-      const text = await res.text()
-      const data = JSON.parse(text)
-      const parsed = parseChangelogJson(data, release.tag_name, release.published_at)
-      const normVer = (v: string) => v.replace(/^v/i, '').trim()
-      const matched = parsed.find((e) => normVer(e.version) === normVer(release.tag_name) || e.version === release.name)
-      if (matched) return matched
-      if (parsed.length) return parsed[0]
+      const res = await timeoutFetch(asset.browser_download_url, 8000)
+      if (res.ok) {
+        const data = JSON.parse(await res.text())
+        const parsed = parseChangelogJson(data, release.tag_name, release.published_at)
+        const matched = matchEntry(parsed)
+        if (matched) return matched
+        if (parsed.length) return parsed[0]
+      }
     } catch {}
   }
+
+  if (global.length) return global[0]
   return null
 }
 

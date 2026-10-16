@@ -123,6 +123,8 @@ onMounted(async () => {
 }
 .platform {
   flex: 1;
+  min-width: 0;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,6 +136,11 @@ onMounted(async () => {
   font-weight: 500;
   font-size: var(--fs-sm);
   transition: background 200ms var(--ease), color 200ms var(--ease);
+}
+.platform span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .platform:hover { color: var(--fg); }
 .platform.active {
@@ -173,7 +180,7 @@ onMounted(async () => {
   color: var(--accent-contrast);
   flex: none;
 }
-.asset-file { font-size: var(--fs-body); color: var(--fg); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.asset-file { font-size: var(--fs-body); color: var(--fg); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 .asset-size { font-size: var(--fs-sm); color: var(--fg-muted); flex: none; }
 
 .placeholder { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 40px 20px; text-align: center; color: var(--fg-muted); }
@@ -201,11 +208,17 @@ onMounted(async () => {
 }
 
 @media (max-width: 480px) {
-  .platforms { gap: 6px; margin-bottom: 18px; }
-  .platform { padding: 10px 6px; gap: 5px; }
+  .platforms { gap: 4px; margin-bottom: 18px; }
+  .platform { padding: 8px 4px; gap: 3px; font-size: 0.75rem; }
+  .p-icon { width: 15px; height: 15px; flex: none; }
   .dl-info { padding: 14px 16px; }
   .dl-ver { font-size: 1rem; }
   .asset-row { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px; }
   .asset-meta { gap: 8px; }
+  .asset-file { flex-basis: 100%; max-width: 100%; white-space: normal; overflow-wrap: anywhere; overflow: visible; text-overflow: clip; }
+}
+@media (max-width: 360px) {
+  .platform span { display: none; }
+  .platform { padding: 10px; }
 }
 </style>
