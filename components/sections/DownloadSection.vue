@@ -3,7 +3,7 @@
     <div class="container">
       <div class="section-head">
         <h2>选一个适合你的</h2>
-        <p class="section-sub">全平台支持，免费开源。Windows 推荐安装版，macOS 和 Linux 也有对应格式。</p>
+        <p class="section-sub">全平台支持，免费开源。Windows 推荐安装版，macOS、Linux 与 Android 也有对应格式。</p>
       </div>
 
       <div class="action-tile fade-up">
@@ -67,13 +67,15 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, type Component } from 'vue'
-import { Monitor, Command, Terminal, Download, ArrowRight } from 'lucide-vue-next'
+import { Monitor, Command, Terminal, Smartphone, Download, ArrowRight } from 'lucide-vue-next'
 import { useReleases, REPO_URL, type Platform, type PlatformAsset, type GhRelease, formatDate } from '~/composables/useReleases'
 
-const { fetchLatestRelease, matchPlatformAssets, probeMirror } = useReleases()
+const { fetchLatestRelease, fetchAndroidRelease, matchPlatformAssets, probeMirror } = useReleases()
 
-const latest = ref<GhRelease | null>(null)
-const assets = ref<PlatformAsset[]>([])
+const desktopLatest = ref<GhRelease | null>(null)
+const androidLatest = ref<GhRelease | null>(null)
+const desktopAssets = ref<PlatformAsset[]>([])
+const androidAssets = ref<PlatformAsset[]>([])
 
 const selectedPlatform = ref<Platform>('windows')
 const loaded = ref(false)
@@ -81,26 +83,40 @@ const loaded = ref(false)
 const platformTabs: { id: Platform; name: string; icon: Component }[] = [
   { id: 'windows', name: 'Windows', icon: Monitor },
   { id: 'macos', name: 'macOS', icon: Command },
-  { id: 'linux', name: 'Linux', icon: Terminal }
+  { id: 'linux', name: 'Linux', icon: Terminal },
+  { id: 'android', name: 'Android', icon: Smartphone }
 ]
 
-const currentAssets = computed(() => assets.value.filter((a) => a.platform === selectedPlatform.value))
+const isAndroid = computed(() => selectedPlatform.value === 'android')
+const latest = computed(() => (isAndroid.value ? androidLatest.value : desktopLatest.value))
+const currentAssets = computed(() => {
+  const list = isAndroid.value ? androidAssets.value : desktopAssets.value
+  return list.filter((a) => a.platform === selectedPlatform.value)
+})
 
 onMounted(async () => {
-  await probeMirror()
-  try {
-    const r = await fetchLatestRelease()
-    if (r) {
-      latest.value = r
-      assets.value = matchPlatformAssets(r)
+  const ua = navigator.userAgent
+  if (/Android/i.test(ua)) selectedPlatform.value = 'android'
+  else if (/Mac/i.test(ua)) selectedPlatform.value = 'macos'
+  else if (/Linux/i.test(ua)) selectedPlatform.value = 'linux'
+  else if (/Win/i.test(ua)) selectedPlatform.value = 'windows'
 
-      if (!assets.value.some((a) => a.platform === selectedPlatform.value)) {
-        const first = assets.value[0]
-        if (first) selectedPlatform.value = first.platform
-      }
-      loaded.value = true
-    }
-  } catch {}
+  await probeMirror()
+  const [dr, ar] = await Promise.allSettled([fetchLatestRelease(), fetchAndroidRelease()])
+  if (dr.status === 'fulfilled' && dr.value) {
+    desktopLatest.value = dr.value
+    desktopAssets.value = matchPlatformAssets(dr.value)
+  }
+  if (ar.status === 'fulfilled' && ar.value) {
+    androidLatest.value = ar.value
+    androidAssets.value = matchPlatformAssets(ar.value, false)
+  }
+  if (!currentAssets.value.length) {
+    const all = [...desktopAssets.value, ...androidAssets.value]
+    const first = all[0]
+    if (first) selectedPlatform.value = first.platform
+  }
+  loaded.value = true
 })
 </script>
 
@@ -217,7 +233,7 @@ onMounted(async () => {
   .asset-meta { gap: 8px; }
   .asset-file { flex-basis: 100%; max-width: 100%; white-space: normal; overflow-wrap: anywhere; overflow: visible; text-overflow: clip; }
 }
-@media (max-width: 360px) {
+@media (max-width: 440px) {
   .platform span { display: none; }
   .platform { padding: 10px; }
 }

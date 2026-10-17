@@ -7,6 +7,7 @@ const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/main`
 
 const MIRROR_BASE = 'https://qookix.cn-nb1.rains3.com'
 const MIRROR_RELEASE_JSON = `${MIRROR_BASE}/release.json`
+const ANDROID_API_BASE = `https://api.github.com/repos/ZhaYi-Miao/QookiX-Launcher-Android`
 
 export interface GhAsset {
   name: string
@@ -36,7 +37,7 @@ export interface ChangelogEntry {
   items: ChangeItem[]
 }
 
-export type Platform = 'windows' | 'macos' | 'linux'
+export type Platform = 'windows' | 'macos' | 'linux' | 'android'
 
 export interface PlatformAsset {
   platform: Platform
@@ -98,6 +99,16 @@ export async function fetchLatestRelease(): Promise<GhRelease | null> {
   } catch {}
   try {
     const res = await timeoutFetch(`${API_BASE}/releases/latest`, 8000, {
+      headers: { Accept: 'application/vnd.github+json' }
+    })
+    if (res.ok) return normalizeRelease(await res.json())
+  } catch {}
+  return null
+}
+
+export async function fetchAndroidRelease(): Promise<GhRelease | null> {
+  try {
+    const res = await timeoutFetch(`${ANDROID_API_BASE}/releases/latest`, 8000, {
       headers: { Accept: 'application/vnd.github+json' }
     })
     if (res.ok) return normalizeRelease(await res.json())
@@ -234,7 +245,7 @@ async function fetchChangelog(release: GhRelease): Promise<ChangelogEntry | null
     } catch {}
   }
 
-  if (global.length) return global[0]
+
   return null
 }
 
@@ -245,11 +256,14 @@ const PLATFORM_RULES: Array<{ platform: Platform; label: string; arch: string; t
   { platform: 'macos', label: 'macOS', arch: '便携版', test: /app\.tar\.gz/i },
   { platform: 'linux', label: 'Linux', arch: 'AppImage', test: /\.appimage$/i },
   { platform: 'linux', label: 'Linux', arch: 'deb', test: /\.deb$/i },
-  { platform: 'linux', label: 'Linux', arch: 'rpm', test: /\.rpm$/i }
+  { platform: 'linux', label: 'Linux', arch: 'rpm', test: /\.rpm$/i },
+  { platform: 'android', label: 'Android', arch: 'arm64', test: /arm64.*\.apk$/i },
+  { platform: 'android', label: 'Android', arch: '通用', test: /universal.*\.apk$/i },
+  { platform: 'android', label: 'Android', arch: 'APK', test: /\.apk$/i }
 ]
 
-export function matchPlatformAssets(release: GhRelease): PlatformAsset[] {
-  const useMirror = mirrorAvailable
+export function matchPlatformAssets(release: GhRelease, useMirrorOverride?: boolean): PlatformAsset[] {
+  const useMirror = useMirrorOverride ?? mirrorAvailable
   const out: PlatformAsset[] = []
   const seen = new Set<string>()
   for (const asset of release.assets) {
@@ -304,6 +318,7 @@ export function useReleases() {
     releasesLoading,
     fetchReleases,
     fetchLatestRelease,
+    fetchAndroidRelease,
     fetchChangelog,
     matchPlatformAssets,
     findPortable,

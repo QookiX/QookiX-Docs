@@ -37,7 +37,7 @@
 import { Check } from 'lucide-vue-next'
 
 const compare = [
-  { label: '安装包大小', us: '6 MB', them: '50–200 MB' },
+  { label: '安装包大小', us: '7 MB', them: '50–200 MB' },
   { label: '内存占用', us: '低', them: '中–高' },
   { label: '广告/遥测', us: '无', them: '部分有' },
   { label: '开源协议', us: 'GPL-3.0', them: '部分闭源' },
@@ -46,7 +46,7 @@ const compare = [
 ]
 
 const stats = [
-  { value: '6 MB', label: '安装包体积' },
+  { value: '7 MB', label: '安装包体积' },
   { value: '4 种', label: '模组加载器' },
   { value: '3 端', label: '跨平台支持' },
   { value: '0', label: '广告与遥测' }

@@ -20,7 +20,7 @@
 const features = [
   { title: '双源内容中心', desc: 'Modrinth + CurseForge，模组、整合包、光影、资源包一键安装，搜索过滤、版本兼容自动检测。', cls: 'w7' },
   { title: '皮肤中心', desc: '3D 预览，披风、经典与纤细模型，按玩家名获取，本地缓存。', cls: 'w5' },
-  { title: '极致轻量', desc: 'Tauri 2 + Rust 内核，安装包 6 MB，内存占用低，启动快。', cls: 'w4' },
+  { title: '极致轻量', desc: 'Tauri 2 + Rust 内核，安装包 7 MB，内存占用低，启动快。', cls: 'w4' },
   { title: '云存档同步', desc: '基于 GitHub 私有仓库，跨设备同步存档、配置与模组列表。', cls: 'w4' },
   { title: '工具箱', desc: '种子地图、皮肤编辑器、资源翻译、存档管理。', cls: 'w4' },
   { title: '多账号管理', desc: '微软正版、离线、外置登录统一管理，一键切换，令牌加密存储于系统钥匙串。', cls: 'w6' },

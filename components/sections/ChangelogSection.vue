@@ -90,7 +90,7 @@ onMounted(async () => {
     )
     const out: ChangelogEntry[] = []
     results.forEach((res) => {
-      if (res.status === 'fulfilled' && res.value) out.push(res.value)
+      if (res.status === 'fulfilled' && res.value && res.value.items.length) out.push(res.value)
     })
     if (out.length) entries.value = out
   } catch {} finally {
