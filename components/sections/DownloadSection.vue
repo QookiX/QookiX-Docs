@@ -2,8 +2,8 @@
   <section id="download" class="section alt">
     <div class="container">
       <div class="section-head">
-        <h2>选一个适合你的</h2>
-        <p class="section-sub">全平台支持，免费开源。Windows 推荐安装版，macOS、Linux 与 Android 也有对应格式。</p>
+        <h2>{{ $t('download.title') }}</h2>
+        <p class="section-sub">{{ $t('download.sub') }}</p>
       </div>
 
       <div class="action-tile fade-up">
@@ -25,7 +25,7 @@
           <div class="dl-info">
             <div class="dl-ver">QookiX {{ latest?.tag_name }}</div>
             <div class="dl-meta">
-              <span>发布于 {{ latest ? formatDate(latest.published_at) : '' }}</span>
+              <span>{{ $t('download.published') }} {{ latest ? formatDate(latest.published_at) : '' }}</span>
               <span class="sep">·</span>
               <span>{{ latest?.name || latest?.tag_name }}</span>
             </div>
@@ -40,7 +40,7 @@
               </div>
               <a class="btn btn-primary" :href="a.downloadUrl" target="_blank" rel="noopener">
                 <Download :size="15" />
-                下载
+                {{ $t('download.btn') }}
               </a>
             </div>
           </div>
@@ -48,17 +48,17 @@
 
         <div v-else-if="!loaded" class="placeholder">
           <span class="spinner" />
-          <p>正在获取最新版本…</p>
+          <p>{{ $t('download.loading') }}</p>
         </div>
 
         <div v-else class="placeholder">
-          <p>暂时无法读取版本信息，你可以直接前往 GitHub Releases 下载。</p>
-          <a class="btn btn-primary" :href="REPO_URL + '/releases'" target="_blank" rel="noopener">前往 Releases</a>
+          <p>{{ $t('download.error') }}</p>
+          <a class="btn btn-primary" :href="REPO_URL + '/releases'" target="_blank" rel="noopener">{{ $t('download.goto_releases') }}</a>
         </div>
       </div>
 
       <a :href="REPO_URL + '/releases'" class="history-link" target="_blank" rel="noopener">
-        查看历史版本与全部更新日志
+        {{ $t('download.history') }}
         <ArrowRight :size="16" />
       </a>
     </div>

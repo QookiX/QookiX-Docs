@@ -5,6 +5,17 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   ssr: true,
   components: [{ path: '~/components', pathPrefix: false }],
+  modules: ['@nuxtjs/i18n'],
+  i18n: {
+    locales: [
+      { code: 'zh', language: 'zh-CN', name: '中文', file: 'zh.json' },
+      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' }
+    ],
+    defaultLocale: 'zh',
+    strategy: 'no_prefix',
+    langDir: 'locales',
+    detectBrowserLanguage: false
+  },
   css: [
     '~/assets/css/tokens.css',
     '~/assets/css/main.css'

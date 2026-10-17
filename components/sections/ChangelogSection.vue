@@ -2,7 +2,7 @@
   <section id="changelog" class="section">
     <div class="container">
       <div class="section-head">
-        <h2>最近改了啥</h2>
+        <h2>{{ $t('changelog.title') }}</h2>
       </div>
 
       <div v-if="entries.length" class="timeline">
@@ -10,7 +10,7 @@
           <div class="release-side">
             <div class="ver">{{ r.version }}</div>
             <div class="date">{{ r.date }}</div>
-            <span class="status-tag" :class="{ latest: r === entries[0] }">{{ r === entries[0] ? '最新' : '稳定' }}</span>
+            <span class="status-tag" :class="{ latest: r === entries[0] }">{{ r === entries[0] ? $t('changelog.latest') : $t('changelog.stable') }}</span>
           </div>
           <div class="release-body">
             <ul v-if="r.items.length" class="changes">
@@ -19,7 +19,7 @@
                 <span class="ctext">{{ c.text }}</span>
               </li>
             </ul>
-            <p v-else class="empty-body">该版本暂无变更说明。</p>
+            <p v-else class="empty-body">{{ $t('changelog.empty') }}</p>
           </div>
         </div>
       </div>
@@ -29,17 +29,17 @@
           <div class="skel-side"><div class="skel-line w60" /><div class="skel-line w40" /></div>
           <div class="skel-card"><div class="skel-line w90" /><div class="skel-line w70" /><div class="skel-line w80" /></div>
         </div>
-        <p class="skel-hint">正在加载…</p>
+        <p class="skel-hint">{{ $t('changelog.loading') }}</p>
       </div>
 
       <div v-else class="fallback">
-        <p>暂时无法读取更新日志，你可以直接前往 GitHub Releases 查看全部变更。</p>
-        <a class="btn btn-secondary" :href="REPO_URL + '/releases'" target="_blank" rel="noopener">前往 Releases</a>
+        <p>{{ $t('changelog.error') }}</p>
+        <a class="btn btn-secondary" :href="REPO_URL + '/releases'" target="_blank" rel="noopener">{{ $t('download.goto_releases') }}</a>
       </div>
 
       <div v-if="entries.length" class="more">
         <a :href="REPO_URL + '/releases'" class="history-link" target="_blank" rel="noopener">
-          查看完整更新日志
+          {{ $t('changelog.more') }}
           <ArrowRight :size="16" />
         </a>
       </div>
@@ -53,6 +53,7 @@ import { ArrowRight } from 'lucide-vue-next'
 import { useReleases, REPO_URL, type ChangelogEntry, type ChangeItem, formatDate } from '~/composables/useReleases'
 
 const { fetchReleases, fetchChangelog } = useReleases()
+const { t } = useI18n()
 
 const entries = ref<ChangelogEntry[]>([])
 const loading = ref(true)
@@ -98,8 +99,8 @@ onMounted(async () => {
   }
 })
 
-function typeLabel(t: ChangeItem['type']) {
-  return t === 'new' ? '新增' : t === 'improve' ? '优化' : t === 'fix' ? '修复' : t === 'remove' ? '移除' : '文档'
+function typeLabel(type: ChangeItem['type']) {
+  return t(`changelog.types.${type}`)
 }
 </script>
 

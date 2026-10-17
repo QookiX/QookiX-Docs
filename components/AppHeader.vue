@@ -10,15 +10,18 @@
         <a v-for="item in navItems" :key="item.href" :href="item.href" class="nav-link" @click="closeMenu">
           {{ item.label }}
         </a>
-        <button class="theme-toggle" :aria-label="theme === 'dark' ? '切换到浅色模式' : '切换到深色模式'" @click="toggleTheme">
+        <button class="lang-toggle" @click="toggleLocale">
+          {{ locale === 'zh' ? 'EN' : '中' }}
+        </button>
+        <button class="theme-toggle" :aria-label="theme === 'dark' ? $t('theme.to_light') : $t('theme.to_dark')" @click="toggleTheme">
           <Sun v-if="theme === 'dark'" :size="18" />
           <Moon v-else :size="18" />
         </button>
-        <a href="https://docs.qookix.cn" class="btn btn-secondary nav-action" target="_blank" rel="noopener noreferrer" @click="closeMenu">文档</a>
-        <a href="#download" class="btn btn-primary cta" @click="closeMenu">下载</a>
+        <a href="https://docs.qookix.cn" class="btn btn-secondary nav-action" target="_blank" rel="noopener noreferrer" @click="closeMenu">{{ $t('nav.docs') }}</a>
+        <a href="#download" class="btn btn-primary cta" @click="closeMenu">{{ $t('nav.download') }}</a>
       </nav>
 
-      <button class="menu-btn" :aria-expanded="menuOpen" aria-label="菜单" @click="menuOpen = !menuOpen">
+      <button class="menu-btn" :aria-expanded="menuOpen" :aria-label="$t('theme.menu')" @click="menuOpen = !menuOpen">
         <span /><span /><span />
       </button>
     </div>
@@ -26,18 +29,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { Sun, Moon } from 'lucide-vue-next'
 import { useTheme } from '~/composables/useTheme'
 
 const { theme, toggleTheme } = useTheme()
+const { t, locale, setLocale } = useI18n()
 
-const navItems = [
-  { href: '#features', label: '功能' },
+const navItems = computed(() => [
+  { href: '#features', label: t('nav.features') },
+  { href: '#changelog', label: t('nav.changelog') },
+  { href: '#faq', label: t('nav.faq') }
+])
 
-  { href: '#changelog', label: '更新日志' },
-  { href: '#faq', label: '常见问题' }
-]
+function toggleLocale() {
+  setLocale(locale.value === 'zh' ? 'en' : 'zh')
+}
 
 const scrolled = ref(false)
 const menuOpen = ref(false)
@@ -127,6 +134,23 @@ onBeforeUnmount(() => {
   transition: color 200ms var(--ease), background 200ms var(--ease);
 }
 .theme-toggle:hover {
+  color: var(--accent);
+  background: var(--surface);
+}
+
+.lang-toggle {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-muted);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  transition: color 200ms var(--ease), background 200ms var(--ease);
+}
+.lang-toggle:hover {
   color: var(--accent);
   background: var(--surface);
 }

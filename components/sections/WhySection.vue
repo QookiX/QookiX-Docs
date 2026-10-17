@@ -2,15 +2,13 @@
   <section id="why" class="section">
     <div class="container">
       <div class="section-head">
-        <h2>为什么选 QookiX</h2>
+        <h2>{{ $t('why.title') }}</h2>
       </div>
 
       <div class="board">
         <div class="compare-tile fade-up">
           <div class="compare-row compare-head">
-            <span>特性</span>
-            <span>QookiX</span>
-            <span>其他启动器</span>
+            <span v-for="(h, i) in head" :key="i">{{ h }}</span>
           </div>
           <div v-for="row in compare" :key="row.label" class="compare-row">
             <span class="compare-label">{{ row.label }}</span>
@@ -34,23 +32,32 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Check } from 'lucide-vue-next'
 
-const compare = [
-  { label: '安装包大小', us: '7 MB', them: '50–200 MB' },
-  { label: '内存占用', us: '低', them: '中–高' },
-  { label: '广告/遥测', us: '无', them: '部分有' },
-  { label: '开源协议', us: 'GPL-3.0', them: '部分闭源' },
-  { label: '跨平台', us: 'Win/Mac/Linux', them: '部分' },
-  { label: '模组双源', us: 'Modrinth+CF', them: '单一源' }
-]
+const { tm, rt } = useI18n()
 
-const stats = [
-  { value: '7 MB', label: '安装包体积' },
-  { value: '4 种', label: '模组加载器' },
-  { value: '3 端', label: '跨平台支持' },
-  { value: '0', label: '广告与遥测' }
-]
+const head = computed(() => {
+  const items = tm('why.head') as any[]
+  return items.map((item) => rt(item))
+})
+
+const compare = computed(() => {
+  const items = tm('why.compare') as any[]
+  return items.map((item) => ({
+    label: rt(item.label),
+    us: rt(item.us),
+    them: rt(item.them)
+  }))
+})
+
+const stats = computed(() => {
+  const items = tm('why.stats') as any[]
+  return items.map((item) => ({
+    value: rt(item.value),
+    label: rt(item.label)
+  }))
+})
 </script>
 
 <style scoped>

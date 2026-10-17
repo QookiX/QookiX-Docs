@@ -3,7 +3,7 @@
     <div class="container">
       <div class="board">
         <div class="sticky-head">
-          <h2>常见问题</h2>
+          <h2>{{ $t('faq.title') }}</h2>
         </div>
 
         <div class="accordion">
@@ -26,34 +26,18 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Plus } from 'lucide-vue-next'
 
-const faqs = [
-  {
-    q: '免费开源吗？',
-    a: '免费、开源，GPL-3.0 协议。源码在 GitHub，不含广告与遥测，任何人都可以审查和贡献代码。'
-  },
-  {
-    q: '需要自己装 Java 吗？',
-    a: '不需要，会自动下载匹配的 Java 运行时。也可以在设置里手动指定已有的 Java 路径。'
-  },
-  {
-    q: '从其他启动器迁移麻烦吗？',
-    a: '支持导入 HMCL、PCL2、Prism Launcher 的实例，选目录即可一键迁移，模组和配置都会保留。'
-  },
-  {
-    q: '便携版和安装版区别？',
-    a: '功能完全一样。便携版解压即用，配置存程序同目录，适合 U 盘携带；安装版注册快捷方式和文件关联，更新更方便。'
-  },
-  {
-    q: '存档云同步怎么用？',
-    a: '在设置里绑定 GitHub 私有仓库，选择要同步的实例和存档，启动器会自动上传和拉取。不依赖任何第三方服务器。'
-  },
-  {
-    q: '遇到问题怎么办？',
-    a: '先阅读官方文档，在社区群可以交流，还可以在 GitHub Issues 提交反馈。'
-  }
-]
+const { tm, rt } = useI18n()
+
+const faqs = computed(() => {
+  const items = tm('faq.items') as any[]
+  return items.map((item) => ({
+    q: rt(item.q),
+    a: rt(item.a)
+  }))
+})
 </script>
 
 <style scoped>

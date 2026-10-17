@@ -1,0 +1,102 @@
+{
+  "hero": {
+    "desc": "方块之旅由此开始。跨平台 Minecraft 启动器，纯净、轻量、无广告。",
+    "download": "免费下载",
+    "docs": "查看文档",
+    "shots": ["主界面", "内容中心", "实例中心"]
+  },
+  "features": {
+    "title": "该有的都有",
+    "items": [
+      { "title": "双源内容中心", "desc": "Modrinth + CurseForge，模组、整合包、光影、资源包一键安装，搜索过滤、版本兼容自动检测。" },
+      { "title": "皮肤中心", "desc": "3D 预览，披风、经典与纤细模型，按玩家名获取，本地缓存。" },
+      { "title": "极致轻量", "desc": "Tauri 2 + Rust 内核，安装包 7 MB，内存占用低，启动快。" },
+      { "title": "云存档同步", "desc": "基于 GitHub 私有仓库，跨设备同步存档、配置与模组列表。" },
+      { "title": "工具箱", "desc": "种子地图、皮肤编辑器、资源翻译、存档管理。" },
+      { "title": "多账号管理", "desc": "微软正版、离线、外置登录统一管理，一键切换，令牌加密存储于系统钥匙串。" },
+      { "title": "版本隔离", "desc": "每个实例独立 JVM 参数、模组目录、游戏版本，互不干扰，删除即清理干净。" },
+      { "title": "游戏优化", "desc": "内存自动分配，JVM 参数调优，启动加速，FPS 优化建议。" },
+      { "title": "主题自定义", "desc": "亮色、暗色、自定义主题色，跟随系统切换，支持自定义背景。" },
+      { "title": "自动更新", "desc": "启动时自动检查新版本，一键升级，增量更新包体积极小。" }
+    ]
+  },
+  "why": {
+    "title": "为什么选 QookiX",
+    "head": ["特性", "QookiX", "其他启动器"],
+    "compare": [
+      { "label": "安装包大小", "us": "7 MB", "them": "50–200 MB" },
+      { "label": "内存占用", "us": "低", "them": "中–高" },
+      { "label": "广告/遥测", "us": "无", "them": "部分有" },
+      { "label": "开源协议", "us": "GPL-3.0", "them": "部分闭源" },
+      { "label": "跨平台", "us": "Win/Mac/Linux", "them": "部分" },
+      { "label": "模组双源", "us": "Modrinth+CF", "them": "单一源" }
+    ],
+    "stats": [
+      { "value": "7 MB", "label": "安装包体积" },
+      { "value": "4 种", "label": "模组加载器" },
+      { "value": "3 端", "label": "跨平台支持" },
+      { "value": "0", "label": "广告与遥测" }
+    ]
+  },
+  "download": {
+    "title": "选一个适合你的",
+    "sub": "全平台支持，免费开源。Windows 推荐安装版，macOS、Linux 与 Android 也有对应格式。",
+    "published": "发布于",
+    "btn": "下载",
+    "loading": "正在获取最新版本…",
+    "error": "暂时无法读取版本信息，你可以直接前往 GitHub Releases 下载。",
+    "goto_releases": "前往 Releases",
+    "history": "查看历史版本与全部更新日志"
+  },
+  "changelog": {
+    "title": "最近改了啥",
+    "latest": "最新",
+    "stable": "稳定",
+    "types": { "new": "新增", "improve": "优化", "fix": "修复", "remove": "移除", "docs": "文档" },
+    "empty": "该版本暂无变更说明。",
+    "loading": "正在加载…",
+    "error": "暂时无法读取更新日志，你可以直接前往 GitHub Releases 查看全部变更。",
+    "more": "查看完整更新日志"
+  },
+  "faq": {
+    "title": "常见问题",
+    "items": [
+      { "q": "免费开源吗？", "a": "免费、开源，GPL-3.0 协议。源码在 GitHub，不含广告与遥测，任何人都可以审查和贡献代码。" },
+      { "q": "需要自己装 Java 吗？", "a": "不需要，会自动下载匹配的 Java 运行时。也可以在设置里手动指定已有的 Java 路径。" },
+      { "q": "从其他启动器迁移麻烦吗？", "a": "支持导入 HMCL、PCL2、Prism Launcher 的实例，选目录即可一键迁移，模组和配置都会保留。" },
+      { "q": "便携版和安装版区别？", "a": "功能完全一样。便携版解压即用，配置存程序同目录，适合 U 盘携带；安装版注册快捷方式和文件关联，更新更方便。" },
+      { "q": "存档云同步怎么用？", "a": "在设置里绑定 GitHub 私有仓库，选择要同步的实例和存档，启动器会自动上传和拉取。不依赖任何第三方服务器。" },
+      { "q": "遇到问题怎么办？", "a": "先阅读官方文档，在社区群可以交流，还可以在 GitHub Issues 提交反馈。" }
+    ]
+  },
+  "nav": {
+    "features": "功能",
+    "changelog": "更新日志",
+    "faq": "常见问题",
+    "docs": "文档",
+    "download": "下载"
+  },
+  "footer": {
+    "tagline": "免费、纯净、无广告的 Minecraft 启动器。",
+    "product": "产品",
+    "download": "下载",
+    "docs": "使用文档",
+    "resource": "资源",
+    "project": "项目",
+    "feedback": "反馈问题",
+    "changelog": "更新日志",
+    "copyright": "© 2026 QookiX Launcher · GPL-3.0",
+    "tech": "基于 Tauri 2 · Rust · Vue 3",
+    "disclaimer": "本项目为非 Minecraft 官方服务，未经 Mojang 或 Microsoft 批准，亦与其无关联。Minecraft 是 Mojang Synergies AB 的商标。"
+  },
+  "theme": {
+    "to_light": "切换到浅色模式",
+    "to_dark": "切换到深色模式",
+    "menu": "菜单"
+  },
+  "seo": {
+    "title": "QookiX Launcher — 跨平台 Minecraft 启动器",
+    "description": "QookiX 是基于 Tauri 的跨平台 Minecraft 启动器，纯净、轻量、无广告。支持 Fabric/Forge/NeoForge/Quilt，Modrinth + CurseForge 双源模组一键安装，云存档同步。",
+    "featureList": ["双源模组一键安装", "多账号管理", "版本隔离", "云存档同步", "皮肤中心", "工具箱"]
+  }
+}

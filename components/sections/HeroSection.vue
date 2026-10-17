@@ -4,13 +4,13 @@
       <div class="board fade-up">
         <div class="panel">
           <h1 class="title"><span class="brand">QookiX</span><br>Launcher</h1>
-          <p class="desc">方块之旅由此开始。跨平台 Minecraft 启动器，纯净、轻量、无广告。</p>
+          <p class="desc">{{ $t('hero.desc') }}</p>
           <div class="actions">
             <a href="#download" class="btn btn-primary">
               <Download :size="18" />
-              免费下载
+              {{ $t('hero.download') }}
             </a>
-            <a href="https://docs.qookix.cn" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">查看文档</a>
+            <a href="https://docs.qookix.cn" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">{{ $t('hero.docs') }}</a>
           </div>
         </div>
 
@@ -44,14 +44,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Download } from 'lucide-vue-next'
 
-const shots = [
-  { id: 1, label: '主界面' },
-  { id: 2, label: '内容中心' },
-  { id: 3, label: '实例中心' }
-]
+const { tm, rt } = useI18n()
+
+const shots = computed(() => {
+  const labels = tm('hero.shots') as any[]
+  return labels.map((label, i) => ({ id: i + 1, label: rt(label) }))
+})
 const currentShot = ref(1)
 </script>
 

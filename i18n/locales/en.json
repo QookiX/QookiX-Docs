@@ -1,0 +1,102 @@
+{
+  "hero": {
+    "desc": "Your block adventure starts here. A cross-platform Minecraft launcher — clean, lightweight, ad-free.",
+    "download": "Download Free",
+    "docs": "View Docs",
+    "shots": ["Main Interface", "Content Hub", "Instances"]
+  },
+  "features": {
+    "title": "Everything You Need",
+    "items": [
+      { "title": "Dual-Source Content Hub", "desc": "Modrinth + CurseForge — mods, modpacks, shaders, resource packs, one-click install with search filters and auto version compatibility." },
+      { "title": "Skin Center", "desc": "3D preview, capes, classic & slim models, fetch by player name, local cache." },
+      { "title": "Ultra Lightweight", "desc": "Tauri 2 + Rust core, 7 MB installer, low memory, fast startup." },
+      { "title": "Cloud Save Sync", "desc": "Based on GitHub private repos, sync saves, configs & mod lists across devices." },
+      { "title": "Toolbox", "desc": "Seed maps, skin editor, resource translation, save management." },
+      { "title": "Multi-Account", "desc": "Microsoft, offline, and external login unified, one-click switch, tokens encrypted in system keychain." },
+      { "title": "Version Isolation", "desc": "Each instance has independent JVM args, mod directory, and game version — no interference, clean on delete." },
+      { "title": "Game Optimization", "desc": "Auto memory allocation, JVM tuning, launch acceleration, FPS optimization tips." },
+      { "title": "Theme Customization", "desc": "Light, dark, custom accent, follow system, custom backgrounds." },
+      { "title": "Auto Update", "desc": "Checks for new versions on launch, one-click upgrade, incremental patches." }
+    ]
+  },
+  "why": {
+    "title": "Why QookiX",
+    "head": ["Feature", "QookiX", "Other Launchers"],
+    "compare": [
+      { "label": "Installer Size", "us": "7 MB", "them": "50–200 MB" },
+      { "label": "Memory Usage", "us": "Low", "them": "Med–High" },
+      { "label": "Ads / Telemetry", "us": "None", "them": "Some" },
+      { "label": "Open Source", "us": "GPL-3.0", "them": "Partial" },
+      { "label": "Cross-Platform", "us": "Win/Mac/Linux", "them": "Partial" },
+      { "label": "Dual Mod Source", "us": "Modrinth+CF", "them": "Single" }
+    ],
+    "stats": [
+      { "value": "7 MB", "label": "Installer Size" },
+      { "value": "4", "label": "Mod Loaders" },
+      { "value": "3", "label": "Platforms" },
+      { "value": "0", "label": "Ads & Telemetry" }
+    ]
+  },
+  "download": {
+    "title": "Pick Your Platform",
+    "sub": "All platforms supported, free and open source. Windows installer recommended; macOS, Linux, and Android also available.",
+    "published": "Published",
+    "btn": "Download",
+    "loading": "Fetching latest release…",
+    "error": "Unable to fetch release info. You can download directly from GitHub Releases.",
+    "goto_releases": "Go to Releases",
+    "history": "View version history and full changelog"
+  },
+  "changelog": {
+    "title": "What's New",
+    "latest": "Latest",
+    "stable": "Stable",
+    "types": { "new": "New", "improve": "Improved", "fix": "Fixed", "remove": "Removed", "docs": "Docs" },
+    "empty": "No changes documented for this version.",
+    "loading": "Loading…",
+    "error": "Unable to load changelog. You can view all changes on GitHub Releases.",
+    "more": "View full changelog"
+  },
+  "faq": {
+    "title": "FAQ",
+    "items": [
+      { "q": "Is it free and open source?", "a": "Yes — free and open source under GPL-3.0. Source code on GitHub, no ads or telemetry, anyone can audit and contribute." },
+      { "q": "Do I need to install Java?", "a": "No, it auto-downloads the matching Java runtime. You can also manually specify an existing Java path in settings." },
+      { "q": "Is migration from other launchers hard?", "a": "Supports importing instances from HMCL, PCL2, and Prism Launcher — just select the directory for one-click migration, mods and configs preserved." },
+      { "q": "Portable vs installer?", "a": "Identical features. Portable runs without install, configs stored alongside the executable, great for USB drives. Installer registers shortcuts and file associations, easier to update." },
+      { "q": "How does cloud sync work?", "a": "Link a GitHub private repo in settings, select instances and saves to sync, the launcher auto-pushes and pulls. No third-party servers involved." },
+      { "q": "What if I run into issues?", "a": "Read the docs first, ask in the community group, or file a report on GitHub Issues." }
+    ]
+  },
+  "nav": {
+    "features": "Features",
+    "changelog": "Changelog",
+    "faq": "FAQ",
+    "docs": "Docs",
+    "download": "Download"
+  },
+  "footer": {
+    "tagline": "A free, clean, ad-free Minecraft launcher.",
+    "product": "Product",
+    "download": "Download",
+    "docs": "Documentation",
+    "resource": "Resources",
+    "project": "Project",
+    "feedback": "Report Issues",
+    "changelog": "Changelog",
+    "copyright": "© 2026 QookiX Launcher · GPL-3.0",
+    "tech": "Powered by Tauri 2 · Rust · Vue 3",
+    "disclaimer": "This project is not affiliated with, endorsed by, or associated with Mojang or Microsoft. Minecraft is a trademark of Mojang Synergies AB."
+  },
+  "theme": {
+    "to_light": "Switch to light mode",
+    "to_dark": "Switch to dark mode",
+    "menu": "Menu"
+  },
+  "seo": {
+    "title": "QookiX Launcher — Cross-Platform Minecraft Launcher",
+    "description": "QookiX is a cross-platform Minecraft launcher built on Tauri — clean, lightweight, ad-free. Supports Fabric/Forge/NeoForge/Quilt, dual-source mod install via Modrinth + CurseForge, cloud save sync.",
+    "featureList": ["Dual-source mod install", "Multi-account management", "Version isolation", "Cloud save sync", "Skin center", "Toolbox"]
+  }
+}

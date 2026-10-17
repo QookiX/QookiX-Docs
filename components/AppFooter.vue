@@ -5,37 +5,37 @@
 
       <div class="inner">
         <div class="brand">
-          <p class="tagline">免费、纯净、无广告的 Minecraft 启动器。</p>
+          <p class="tagline">{{ $t('footer.tagline') }}</p>
         </div>
 
         <div class="cols">
           <div class="col">
-            <h4>产品</h4>
-            <a href="#download">下载</a>
-            <a href="https://docs.qookix.cn" target="_blank" rel="noopener">使用文档</a>
+            <h4>{{ $t('footer.product') }}</h4>
+            <a href="#download">{{ $t('footer.download') }}</a>
+            <a href="https://docs.qookix.cn" target="_blank" rel="noopener">{{ $t('footer.docs') }}</a>
             <a :href="REPO_URL + '/releases'" target="_blank" rel="noopener">Releases</a>
           </div>
           <div class="col">
-            <h4>资源</h4>
+            <h4>{{ $t('footer.resource') }}</h4>
             <a href="https://modrinth.com" target="_blank" rel="noopener">Modrinth</a>
             <a href="https://www.curseforge.com" target="_blank" rel="noopener">CurseForge</a>
-            <a href="#changelog">更新日志</a>
+            <a href="#changelog">{{ $t('footer.changelog') }}</a>
           </div>
           <div class="col">
-            <h4>项目</h4>
+            <h4>{{ $t('footer.project') }}</h4>
             <a :href="REPO_URL" target="_blank" rel="noopener">GitHub</a>
-            <a :href="REPO_URL + '/issues'" target="_blank" rel="noopener">反馈问题</a>
+            <a :href="REPO_URL + '/issues'" target="_blank" rel="noopener">{{ $t('footer.feedback') }}</a>
             <a :href="REPO_URL + '/blob/main/LICENSE'" target="_blank" rel="noopener">GPL-3.0</a>
           </div>
         </div>
       </div>
 
       <div class="bottom">
-        <span>© 2026 QookiX Launcher · GPL-3.0</span>
-        <span>基于 Tauri 2 · Rust · Vue 3</span>
+        <span>{{ $t('footer.copyright') }}</span>
+        <span>{{ $t('footer.tech') }}</span>
       </div>
       <div class="disclaimer">
-        本项目为非 Minecraft 官方服务，未经 Mojang 或 Microsoft 批准，亦与其无关联。Minecraft 是 Mojang Synergies AB 的商标。
+        {{ $t('footer.disclaimer') }}
       </div>
     </div>
   </footer>
