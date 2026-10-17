@@ -19,6 +19,7 @@
             <h4>{{ $t('footer.resource') }}</h4>
             <a href="https://modrinth.com" target="_blank" rel="noopener">Modrinth</a>
             <a href="https://www.curseforge.com" target="_blank" rel="noopener">CurseForge</a>
+            <a href="https://www.mcimg.com" target="_blank" rel="noopener">{{ $t('footer.mcimg') }}</a>
             <a href="#changelog">{{ $t('footer.changelog') }}</a>
           </div>
           <div class="col">

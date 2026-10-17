@@ -85,6 +85,7 @@
     "project": "项目",
     "feedback": "反馈问题",
     "changelog": "更新日志",
+    "mcimg": "拾木空间",
     "copyright": "© 2026 QookiX Launcher · GPL-3.0",
     "tech": "基于 Tauri 2 · Rust · Vue 3",
     "disclaimer": "本项目为非 Minecraft 官方服务，未经 Mojang 或 Microsoft 批准，亦与其无关联。Minecraft 是 Mojang Synergies AB 的商标。"

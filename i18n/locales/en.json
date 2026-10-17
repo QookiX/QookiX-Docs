@@ -85,6 +85,7 @@
     "project": "Project",
     "feedback": "Report Issues",
     "changelog": "Changelog",
+    "mcimg": "拾木空间",
     "copyright": "© 2026 QookiX Launcher · GPL-3.0",
     "tech": "Powered by Tauri 2 · Rust · Vue 3",
     "disclaimer": "This project is not affiliated with, endorsed by, or associated with Mojang or Microsoft. Minecraft is a trademark of Mojang Synergies AB."
