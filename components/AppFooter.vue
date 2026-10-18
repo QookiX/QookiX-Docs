@@ -25,6 +25,7 @@
           <div class="col">
             <h4>{{ $t('footer.project') }}</h4>
             <a :href="REPO_URL" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://afdian.com/a/weimosheng" target="_blank" rel="noopener">{{ $t('footer.afdian') }}</a>
             <a :href="REPO_URL + '/issues'" target="_blank" rel="noopener">{{ $t('footer.feedback') }}</a>
             <a :href="REPO_URL + '/blob/main/LICENSE'" target="_blank" rel="noopener">GPL-3.0</a>
           </div>
