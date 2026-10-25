@@ -1,6 +1,6 @@
 {
   "hero": {
-    "desc": "Your block adventure starts here. A cross-platform Minecraft launcher — clean, lightweight, ad-free.",
+    "desc": "Your block adventure starts here. A cross-platform Minecraft launcher for Windows, macOS, Linux & Android — clean, lightweight, ad-free.",
     "download": "Download Free",
     "docs": "View Docs",
     "shots": ["Main Interface", "Content Hub", "Instances"]
@@ -17,7 +17,9 @@
       { "title": "Version Isolation", "desc": "Each instance has independent JVM args, mod directory, and game version — no interference, clean on delete." },
       { "title": "Game Optimization", "desc": "Auto memory allocation, JVM tuning, launch acceleration, FPS optimization tips." },
       { "title": "Theme Customization", "desc": "Light, dark, custom accent, follow system, custom backgrounds." },
-      { "title": "Auto Update", "desc": "Checks for new versions on launch, one-click upgrade, incremental patches." }
+      { "title": "Auto Update", "desc": "Checks for new versions on launch, one-click upgrade, incremental patches." },
+      { "title": "Native Android Support", "desc": "Touch-optimized Android app — manage instances, install mods, and launch games on phones & tablets, same experience as desktop." },
+      { "title": "Cross-Device Sync", "desc": "Desktop and Android share accounts, instance configs & mod lists — cloud sync lets you continue your desktop progress on mobile." }
     ]
   },
   "why": {
@@ -28,7 +30,7 @@
       { "label": "Memory Usage", "us": "Low", "them": "Med–High" },
       { "label": "Ads / Telemetry", "us": "None", "them": "Some" },
       { "label": "Open Source", "us": "GPL-3.0", "them": "Partial" },
-      { "label": "Cross-Platform", "us": "Win/Mac/Linux", "them": "Partial" },
+      { "label": "Cross-Platform", "us": "Win/Mac/Linux/Android", "them": "Partial" },
       { "label": "Dual Mod Source", "us": "Modrinth+CF", "them": "Single" }
     ],
     "stats": [
@@ -66,7 +68,10 @@
       { "q": "Is migration from other launchers hard?", "a": "Supports importing instances from HMCL, PCL2, and Prism Launcher — just select the directory for one-click migration, mods and configs preserved." },
       { "q": "Portable vs installer?", "a": "Identical features. Portable runs without install, configs stored alongside the executable, great for USB drives. Installer registers shortcuts and file associations, easier to update." },
       { "q": "How does cloud sync work?", "a": "Link a GitHub private repo in settings, select instances and saves to sync, the launcher auto-pushes and pulls. No third-party servers involved." },
-      { "q": "What if I run into issues?", "a": "Read the docs first, ask in the community group, or file a report on GitHub Issues." }
+      { "q": "What if I run into issues?", "a": "Read the docs first, ask in the community group, or file a report on GitHub Issues." },
+      { "q": "How to install on Android?", "a": "Switch to the Android tab on the download page and pick the right APK: arm64 for most phones & tablets, x86_64 for emulators. If prompted about \"unknown sources\", allow installation to proceed." },
+      { "q": "Are Android and desktop features the same?", "a": "Core features are identical: instance management, mod installation, skin center, multi-account login — all adapted for touch. Some desktop-only features (like large-scale seed map rendering) are adjusted for mobile and will be expanded in future updates." },
+      { "q": "Can my phone run Minecraft well?", "a": "Depends on your device. We recommend at least 6 GB RAM and a Snapdragon 8-series or equivalent. The launcher auto-tunes memory allocation; for modpacks, lower render distance and graphics for smoother gameplay." }
     ]
   },
   "nav": {
@@ -98,7 +103,7 @@
   },
   "seo": {
     "title": "QookiX Launcher — Cross-Platform Minecraft Launcher",
-    "description": "QookiX is a cross-platform Minecraft launcher built on Tauri — clean, lightweight, ad-free. Supports Fabric/Forge/NeoForge/Quilt, dual-source mod install via Modrinth + CurseForge, cloud save sync.",
+    "description": "QookiX is a cross-platform Minecraft launcher built on Tauri — for Windows, macOS, Linux & Android. Clean, lightweight, ad-free. Supports Fabric/Forge/NeoForge/Quilt, dual-source mod install via Modrinth + CurseForge, cloud save sync.",
     "featureList": ["Dual-source mod install", "Multi-account management", "Version isolation", "Cloud save sync", "Skin center", "Toolbox"]
   }
 }

@@ -19,7 +19,7 @@ const jsonLd = computed(() => JSON.stringify({
   '@type': 'SoftwareApplication',
   name: 'QookiX Launcher',
   applicationCategory: 'GameApplication',
-  operatingSystem: 'Windows, macOS, Linux',
+  operatingSystem: 'Windows, macOS, Linux, Android',
   description: t('seo.description'),
   url: 'https://www.qookix.cn/',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },

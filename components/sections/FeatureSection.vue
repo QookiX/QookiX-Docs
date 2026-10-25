@@ -21,7 +21,7 @@ import { computed } from 'vue'
 
 const { tm, rt } = useI18n()
 
-const featureCls = ['w7', 'w5', 'w4', 'w4', 'w4', 'w6', 'w6', 'w4', 'w4', 'w4']
+const featureCls = ['w7', 'w5', 'w4', 'w4', 'w4', 'w6', 'w6', 'w4', 'w4', 'w4', 'w6', 'w6']
 const features = computed(() => {
   const items = tm('features.items') as any[]
   return items.map((item, i) => ({
