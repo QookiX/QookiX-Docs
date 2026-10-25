@@ -7,6 +7,7 @@ const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/main`
 
 const MIRROR_BASE = 'https://qookix.cn-nb1.rains3.com'
 const MIRROR_RELEASE_JSON = `${MIRROR_BASE}/release.json`
+const MIRROR_ANDROID_JSON = `${MIRROR_BASE}/release-android.json`
 const ANDROID_API_BASE = `https://api.github.com/repos/ZhaYi-Miao/QookiX-Launcher-Android`
 
 export interface GhAsset {
@@ -57,7 +58,9 @@ function timeoutFetch(url: string, ms: number, init?: RequestInit): Promise<Resp
 }
 
 function mirrorDownloadUrl(assetName: string): string {
-  return `${MIRROR_BASE}/${assetName.replace(/QookiX\.Launcher/g, 'QookiX%20Launcher')}`
+  // 桶内 key 与 GitHub asset 原始文件名一致（QookiX.Launcher 用点号分隔）。
+  // encodeURIComponent 不会编码 . _ - 等无保留字符，仅处理真正需要转义的字符。
+  return `${MIRROR_BASE}/${encodeURIComponent(assetName)}`
 }
 
 function normalizeRelease(data: any): GhRelease {
@@ -107,6 +110,17 @@ export async function fetchLatestRelease(): Promise<GhRelease | null> {
 }
 
 export async function fetchAndroidRelease(): Promise<GhRelease | null> {
+  // 优先从国内镜像读取（避免国内浏览器直连 GitHub API 超时）
+  try {
+    const res = await timeoutFetch(MIRROR_ANDROID_JSON, 8000)
+    if (res.ok) {
+      const data = await res.json()
+      if (data && data.tag_name && Array.isArray(data.assets)) {
+        return normalizeRelease(data)
+      }
+    }
+  } catch {}
+  // 回退 GitHub API
   try {
     const res = await timeoutFetch(`${ANDROID_API_BASE}/releases/latest`, 8000, {
       headers: { Accept: 'application/vnd.github+json' }
@@ -258,6 +272,7 @@ const PLATFORM_RULES: Array<{ platform: Platform; label: string; arch: string; t
   { platform: 'linux', label: 'Linux', arch: 'deb', test: /\.deb$/i },
   { platform: 'linux', label: 'Linux', arch: 'rpm', test: /\.rpm$/i },
   { platform: 'android', label: 'Android', arch: 'arm64', test: /arm64.*\.apk$/i },
+  { platform: 'android', label: 'Android', arch: 'x86_64', test: /x86_64.*\.apk$/i },
   { platform: 'android', label: 'Android', arch: '通用', test: /universal.*\.apk$/i },
   { platform: 'android', label: 'Android', arch: 'APK', test: /\.apk$/i }
 ]
