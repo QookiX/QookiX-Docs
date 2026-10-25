@@ -34,7 +34,7 @@
     "stats": [
       { "value": "7 MB", "label": "安装包体积" },
       { "value": "4 种", "label": "模组加载器" },
-      { "value": "3 端", "label": "跨平台支持" },
+      { "value": "4 端", "label": "跨平台支持" },
       { "value": "0", "label": "广告与遥测" }
     ]
   },

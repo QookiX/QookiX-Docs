@@ -34,7 +34,7 @@
     "stats": [
       { "value": "7 MB", "label": "Installer Size" },
       { "value": "4", "label": "Mod Loaders" },
-      { "value": "3", "label": "Platforms" },
+      { "value": "4", "label": "Platforms" },
       { "value": "0", "label": "Ads & Telemetry" }
     ]
   },
