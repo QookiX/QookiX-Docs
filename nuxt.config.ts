@@ -56,6 +56,10 @@ export default defineNuxtConfig({
         {
           innerHTML: "(function(){try{var t=localStorage.getItem('qookix-theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();",
           tagPosition: 'head'
+        },
+        {
+          innerHTML: "var _hmt = _hmt || [];(function(){var hm=document.createElement('script');hm.src='https://hm.baidu.com/hm.js?719bd3e86793bf7c42f3d61d08820620';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(hm,s);})();",
+          tagPosition: 'head'
         }
       ]
     }
