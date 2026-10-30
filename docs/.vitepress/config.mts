@@ -44,6 +44,7 @@ export default defineConfig({
     ["link", { rel: "icon", type: "image/png", href: "/qookix-icon.png" }],
     ["meta", { name: "theme-color", content: "#0a0a0c" }],
     ["script", {}, SYNC_THEME],
+    ["script", {}, `var _hmt = _hmt || [];(function(){var hm=document.createElement('script');hm.src='https://hm.baidu.com/hm.js?719bd3e86793bf7c42f3d61d08820620';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(hm,s);})();`],
   ],
 
   themeConfig: {
