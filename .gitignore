@@ -8,4 +8,6 @@ dist
 .env
 .taste-skill
 docs/.vitepress/cache
-docs/.vitepress/dist.codeartsdoer
+docs/.vitepress/dist
+.codeartsdoer
+nul
