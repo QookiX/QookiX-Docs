@@ -48,7 +48,10 @@
     "loading": "正在获取最新版本…",
     "error": "暂时无法读取版本信息，你可以直接前往 GitHub Releases 下载。",
     "goto_releases": "前往 Releases",
-    "history": "查看历史版本与全部更新日志"
+    "history": "查看历史版本与全部更新日志",
+    "alt_title": "其他下载方式",
+    "alt_baidu": "百度网盘",
+    "alt_github": "GitHub Releases"
   },
   "changelog": {
     "title": "最近改了啥",

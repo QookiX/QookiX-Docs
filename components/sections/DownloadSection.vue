@@ -55,6 +55,20 @@
           <p>{{ $t('download.error') }}</p>
           <a class="btn btn-primary" :href="REPO_URL + '/releases'" target="_blank" rel="noopener">{{ $t('download.goto_releases') }}</a>
         </div>
+
+        <div class="alt-downloads">
+          <span class="alt-label">{{ $t('download.alt_title') }}</span>
+          <div class="alt-links">
+            <a class="alt-link" :href="BAIDU_PAN_URL" target="_blank" rel="noopener">
+              <Cloud :size="15" />
+              <span>{{ $t('download.alt_baidu') }}</span>
+            </a>
+            <a class="alt-link" :href="REPO_URL + '/releases'" target="_blank" rel="noopener">
+              <Github :size="15" />
+              <span>{{ $t('download.alt_github') }}</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       <a :href="REPO_URL + '/releases'" class="history-link" target="_blank" rel="noopener">
@@ -67,8 +81,10 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, type Component } from 'vue'
-import { Monitor, Command, Terminal, Smartphone, Download, ArrowRight } from 'lucide-vue-next'
+import { Monitor, Command, Terminal, Smartphone, Download, ArrowRight, Cloud, Github } from 'lucide-vue-next'
 import { useReleases, REPO_URL, type Platform, type PlatformAsset, type GhRelease, formatDate } from '~/composables/useReleases'
+
+const BAIDU_PAN_URL = 'https://pan.baidu.com/s/5P2JCAYQuXBSRSSueJcbtpg'
 
 const { fetchLatestRelease, fetchAndroidRelease, matchPlatformAssets, probeMirror } = useReleases()
 
@@ -215,6 +231,42 @@ onMounted(async () => {
 }
 .history-link:hover { color: var(--accent); }
 
+.alt-downloads {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  flex-wrap: wrap;
+}
+.alt-label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--fg-muted);
+  flex: none;
+}
+.alt-links { display: flex; gap: 10px; flex-wrap: wrap; }
+.alt-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: var(--radius);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  background: var(--tile);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  transition: background 200ms var(--ease), color 200ms var(--ease), border-color 200ms var(--ease);
+}
+.alt-link:hover {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: var(--accent);
+}
+
 .section-sub {
   color: var(--fg);
   font-size: var(--fs-body);
@@ -236,5 +288,7 @@ onMounted(async () => {
 @media (max-width: 440px) {
   .platform span { display: none; }
   .platform { padding: 10px; }
+  .alt-downloads { gap: 10px; padding: 12px; }
+  .alt-link { padding: 7px 11px; }
 }
 </style>

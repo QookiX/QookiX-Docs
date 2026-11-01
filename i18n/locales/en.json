@@ -48,7 +48,10 @@
     "loading": "Fetching latest release…",
     "error": "Unable to fetch release info. You can download directly from GitHub Releases.",
     "goto_releases": "Go to Releases",
-    "history": "View version history and full changelog"
+    "history": "View version history and full changelog",
+    "alt_title": "Alternative Downloads",
+    "alt_baidu": "Baidu NetDisk",
+    "alt_github": "GitHub Releases"
   },
   "changelog": {
     "title": "What's New",
